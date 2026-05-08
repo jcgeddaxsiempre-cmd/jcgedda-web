@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Juan Carlos Gedda - Fotógrafo, documentalista y realizador audiovisual. Obra completa, filmografía, premios internacionales y legado en La Araucanía.">
+    <title>Juan Carlos Gedda | Fotografía Documentalista - La Araucanía</title>
+    <link rel="canonical" href="https://juancarlosgedda.com">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Cormorant+Garamond:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-gray: #f5f5f5;
+            --secondary-gray: #eeeeee;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --accent-gold: #b8860b;
+            --accent-dark: #1a1a1a;
+            --white: #ffffff;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--white);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        /* HEADER Y NAVEGACIÓN */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--white);
+            border-bottom: 1px solid var(--secondary-gray);
+            z-index: 1000;
+            padding: 1.5rem 0;
+        }
+
+        .header-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-dark);
+            text-decoration: none;
+        }
+
+        .logo:hover {
+            opacity: 0.8;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 0.95rem;
+            font-weight: 400;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-gold);
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after,
+        nav a.active::after {
+            width: 100%;
+        }
+
+        nav a:hover {
+            color: var(--accent-gold);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-dark);
+        }
+
+        /* HERO FULLSCREEN */
+        .hero {
+            margin-top: 80px;
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('images/hero-bg.jpg') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            display: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--accent-dark);
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--text-light);
+            margin-bottom: 3rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--accent-gold);
+            color: var(--white);
+            text-decoration: none;
+            border: none;
+            border-radius: 0;
+            cursor: pointer;
+            font-family: 'Lato', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            transition: all 0.3s;
+            letter-spacing: 1px;
+        }
+
+        .cta-button:hover {
+            background: var(--accent-dark);
+            transform: translateY(-2px);
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            border: 2px solid var(--accent-dark);
+            color: var(--accent-dark);
+            margin-left: 1rem;
+        }
+
+        .cta-button.secondary:hover {
+            background: var(--accent-dark);
+            color: var(--white);
+        }
+
+        /* SECCIONES */
+        .section {
+            display: none;
+            min-height: 100vh;
+            padding: 80px 2rem 4rem;
+            animation: fadeIn 0.6s ease-in;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section h2 {
+            font-size: 3rem;
+            color: var(--accent-dark);
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            font-weight: 300;
+        }
+
+        /* CARDS */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .card {
+            background: var(--white);
+            border: 1px solid var(--secondary-gray);
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .card:hover {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            border-color: var(--accent-gold);
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin: 1rem 0;
+            color: var(--accent-dark);
+        }
+
+        .card p {
+            color: var(--text-light);
+            margin: 1rem 0;
+            font-size: 0.95rem;
+            text-align: justify;
+        }
+
+        /* ABOUT SECTION */
+        .about-text {
+            color: var(--text-dark);
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text h3 {
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--accent-dark);
+        }
+
+        .about-text ul {
+            margin-left: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .about-text li {
+            margin-bottom: 0.8rem;
+        }
+
+        /* LISTA */
+        .filmography-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .filmography-item {
+            background: var(--white);
+            border-left: 4px solid var(--accent-gold);
+            padding: 1.5rem;
+            border: 1px solid var(--secondary-gray);
+            border-left: 4px solid var(--accent-gold);
+        }
+
+        .filmography-item strong {
+            color: var(--accent-dark);
+        }
+
+        .year {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* AWARDS */
+        .awards-list {
+            list-style: none;
+            margin-top: 2rem;
+        }
+
+        .awards-list li {
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            background: var(--primary-gray);
+            border-left: 4px solid var(--accent-gold);
+            line-height: 1.8;
+        }
+
+        /* TESTIMONIOS */
+        .testimonial {
+            background: var(--primary-gray);
+            padding: 2.5rem;
+            margin: 2rem 0;
+            border-left: 4px solid var(--accent-gold);
+            font-style: italic;
+            color: var(--text-dark);
+            line-height: 1.8;
+        }
+
+        .testimonial-author {
+            font-style: normal;
+            font-weight: 700;
+            color: var(--accent-dark);
+            margin-top: 1rem;
+        }
+
+        /* FORMULARIO */
+        .contact-form {
+            max-width: 600px;
+            margin: 3rem auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid var(--secondary-gray);
+            background: var(--white);
+            color: var(--text-dark);
+            font-family: 'Lato', sans-serif;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .checkbox-group input {
+            width: auto;
+        }
+
+        .checkbox-group label {
+            margin: 0;
+            font-weight: 400;
+            font-size: 0.9rem;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--accent-dark);
+            color: var(--white);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-section {
+            margin: 1.5rem 0;
+        }
+
+        .footer-section h3 {
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .social-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-gold);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 1.5rem;
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            nav ul {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                gap: 0;
+                background: var(--white);
+                border-bottom: 1px solid var(--secondary-gray);
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s;
+            }
+
+            nav ul.active {
+                max-height: 600px;
+            }
+
+            nav a {
+                display: block;
+                padding: 1rem 2rem;
+            }
+
+            nav a::after {
+                display: none;
+            }
+
+            .hero {
+                margin-top: 60px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .cta-button {
+                display: block;
+                margin: 0.5rem auto;
+                width: auto;
+            }
+
+            .cta-button.secondary {
+                margin-left: 0;
+            }
+
+            .section {
+                padding: 60px 1.5rem 2rem;
+            }
+
+            .section h2 {
+                font-size: 2rem;
+            }
+
+            .filmography-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="header-inner">
+            <a href="#" class="logo" onclick="showSection('inicio'); return false;">JC GEDDA</a>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <nav>
+                <ul id="nav-menu">
+                    <li><a href="#" onclick="showSection('inicio'); return false;">Inicio</a></li>
+                    <li><a href="#" onclick="showSection('biografia'); return false;">Biografía</a></li>
+                    <li><a href="#" onclick="showSection('filmografia'); return false;">Filmografía</a></li>
+                    <li><a href="#" onclick="showSection('pewen'); return false;">Libro Pewen</a></li>
+                    <li><a href="#" onclick="showSection('exposiciones'); return false;">Exposiciones</a></li>
+                    <li><a href="#" onclick="showSection('contacto'); return false;">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="inicio" class="section active">
+        <div class="hero">
+            <div class="hero-content">
+                <h1>Juan Carlos Gedda</h1>
+                <p>Fotógrafo • Documentalista • Realizador Audiovisual</p>
+                <p style="font-size: 0.95rem; margin-bottom: 2rem;">En memoria de su legado en La Araucanía, Chile (1954 - 2023)</p>
+                <div>
+                    <button class="cta-button" onclick="showSection('biografia'); return false;">Conocer su Historia</button>
+                    <button class="cta-button secondary" onclick="showSection('contacto'); return false;">Contactar</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BIOGRAFÍA -->
+    <section id="biografia" class="section">
+        <div class="section-container">
+            <h2>Biografía</h2>
+            
+            <div class="about-text" style="margin-top: 3rem;">
+                <div style="float: right; margin-left: 2rem; margin-bottom: 1rem; max-width: 250px;">
+                    <img src="images/about.jpg" alt="Juan Carlos Gedda Ortiz - Fotógrafo y Documentalista" style="width: 100%; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                </div>
+                <p><strong>Juan Carlos Gedda Ortiz</strong> (Temuco, 23 de septiembre de 1954 - Villarrica, 22 de noviembre de 2023) fue un fotógrafo, documentalista y productor audiovisual chileno.</p>
+                
+                <p>Fue cocreador y colaborador de proyectos televisivos como "Al Sur del Mundo", "Bajo la Cruz del Sur" y "Chile, un territorio Al Sur del Mundo", como director y codirector de numerosos documentales, por los que recibió variados premios y reconocimientos. Además, participó como realizador en la serie "Frutos del País". Ejerció como docente en la Escuela de Comunicación Audiovisual de la Universidad Mayor y en el Departamento de Antropología de la Universidad Católica de Temuco.</p>
+
+                <p>Obtuvo el Premio del Público en el Festival de Sondrio (Italia) de 1995 con su documental Torres del Paine, las montañas azules; y también ganó el Premio Pudú en el Festival Internacional de Cine de Valdivia de 1999, con su documental Dominga Neculman, Alfarera Mapuche. Con el documental Las Falkland-Malvinas obtuvo el segundo lugar en el Festival Imagen do Natura de Sao Paulo, en 1996. En 2004, fue miembro del Consejo de las Artes y la Industria Audiovisual del Consejo Nacional de la Cultura y las Artes, y en 2009 impulsó la creación de la Asociación Gremial de Trabajadores del Audiovisual y el Cine de La Araucanía, donde se convirtió en su primer presidente. En 2011 recibió el Premio Enrique Eilers, por su destacada trayectoria y por su labor como maestro formador de nuevas generaciones de realizadores audiovisuales.</p>
+
+                <p>Entre sus obras destacadas se encuentran Los Hombres del Cochayuyo, considerado un importante aporte para el documental etnográfico y la preservación de la memoria y cultura del litoral de la región de La Araucanía en Chile, y La Antigua Ruta al Puelmapu, donde se reprodujo parte de las rutas utilizadas por el pueblo Mapuche para cruzar la cordillera de Los Andes hacia Argentina, las que habían sido descritas por el Lonko Pascual Coña.</p>
+
+                <p>Otras de sus obras relevantes fueron: Los pescadores de más afuera, Las Loceras de Quinchamalí, El torneo campesino de Tres Hijuelas, Los juegos chilenos de Septiembre o La Guitarra Chilena en la Araucanía, documentales donde manifestó su profundo compromiso con la vida de las personas y los oficios de un Chile vinculado a sus entornos naturales y menos visibilizados por la cultura mediática local y nacional.</p>
+
+                <p>En 2004, bajo TAIRA Producciones, desarrolló la obra audiovisual "La vida y la muerte de Cisne de Cuello Negro", definido por su autor como "un ensayo poético de imagen en movimiento, música y poesía", iniciativa que contó con el apoyo del Fondo Nacional de la Cultura y las Artes. La música original fue compuesta por el músico chileno Cristián López, y los poemas inéditos escritos y vocalizados por los poetas de La Araucanía Elicura Chihuailaf, Guido Eytel, Jaime Luis Huenún, Leonel Lienlaf, María Isabel Lara y Cristian Lagos.</p>
+
+                <h3>Como Fotógrafo</h3>
+                <p>En su carrera como fotógrafo, en 1975 se incorpora al programa "Vida Silvestre" de la Corporación Nacional Forestal de Chile, liderando la unidad de fotografía e impartiendo charlas educativas y realizando archivos fotográficos sobre flora y fauna endémica para los Parques Nacionales de La Araucanía. Entre los años 1977 y 1979, se desempeñó como encargado de la unidad de fotografía del "Centro de Televisión Educativa TV DACTA" en Caracas, Venezuela. Como fotógrafo, realizó diversos reportajes fotográficos naturalistas para visibilizar y promover la conservación de especies nativas del mundo natural, animal y humano, en la revista 'GeoMundo', 'Nosotros' de Lagoven, en Venezuela, 'La Revista del Domingo' de El Mercurio, en Chile, y en la revista bilingüe 'Patagon Journal' con el Ensayo fotográfico Otoño en La Araucanía - Fall in Araucanía.</p>
+
+                <p>Mediante su obra fotográfica manifestó un profundo compromiso con el mundo natural y cultural, sobre todo desde la Región de La Araucanía. Algunas de sus obras más icónicas quedarían plasmadas en el libro "Platería Mapuche" de Raúl Morris von Bennewitz, en 1992. A partir de su participación en FotoNaturaleza y dada su vasta producción visual y trayectoria, publicó algunas de sus fotografías en los libros "Foto Naturaleza de Chile" en 2012, y en la edición "Foto Naturaleza Fine Art Chile" en 2013.</p>
+
+                <p>En 2016, en consagración de su trayectoria fotográfica y artística, presentó la exposición fotográfica titulada "Tierravisual, retrospectiva fotográfica de Juan Carlos Gedda", en la Galería de Arte de la Universidad Católica de Temuco, cuyo eje temático fue la Araucaria araucana, compuesta de 49 obras obtenidas desde mediados de los´70 a la fecha de la muestra.</p>
+
+                <h3>Docencia y Legado</h3>
+                <p>Su experiencia como docente universitario se desarrolló entre 2000 y 2014 en la Universidad Mayor, sede Temuco, impartiendo asignaturas de Lenguaje Visual, Documental, Fotografía fija digital y Dirección de fotografía para cine. En el Diplomado de Medios para el Registro Social de la Universidad Católica de Temuco fue docente del módulo de Dirección de Documentales. En 2004 fue convocado a participar en el primer Consejo del Arte y la Industria Audiovisual del Gobierno de Chile.</p>
+
+                <p>En la última década, Juan Carlos Gedda Ortiz fue reconocido en diversas instancias de carácter cultural, participando como invitado al ciclo de mediaciones artísticas "Tesoros del Ñielol", producido por la Seremi de las Culturas y la Corporación de Desarrollo Araucanía, en el capítulo titulado "Poética audiovisual", en 2021. El mismo año, fue protagonista de un capítulo de "La Cajita Musical, recuerdos de la infancia", iniciativa impulsada por la Seremi de las Culturas, las Artes y el Patrimonio, a través del programa de Fortalecimiento de la Identidad Cultural Regional.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FILMOGRAFÍA -->
+    <section id="filmografia" class="section">
+        <div class="section-container">
+            <h2>Filmografía</h2>
+            <p class="section-subtitle">Más de 50 documentales realizados entre 1985 y 2021</p>
+
+            <!-- GALERÍA DE OBRAS -->
+            <div style="margin: 3rem 0; padding: 2rem 0; border-top: 1px solid var(--secondary-gray); border-bottom: 1px solid var(--secondary-gray);">
+                <h3 style="font-size: 1.5rem; text-align: center; margin-bottom: 2rem; color: var(--accent-dark);">Obras Fotográficas Destacadas</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                    <div style="border-radius: 8px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s;">
+                        <img src="images/portfolio-1.jpg" alt="Obra fotográfica de Juan Carlos Gedda" style="width: 100%; height: 300px; object-fit: cover; display: block;">
+                    </div>
+                    <div style="border-radius: 8px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s;">
+                        <img src="images/portfolio-2.jpg" alt="Paisaje de La Araucanía" style="width: 100%; height: 300px; object-fit: cover; display: block;">
+                    </div>
+                    <div style="border-radius: 8px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s;">
+                        <img src="images/portfolio-3.jpg" alt="Fotografía naturalista" style="width: 100%; height: 300px; object-fit: cover; display: block;">
+                    </div>
+                    <div style="border-radius: 8px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s;">
+                        <img src="images/portfolio-4.jpg" alt="Obra de Juan Carlos Gedda" style="width: 100%; height: 300px; object-fit: cover; display: block;">
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="font-size: 1.8rem; margin-top: 3rem; margin-bottom: 1.5rem; color: var(--accent-dark);">Como Director</h3>
+            <div class="filmography-list">
+                <div class="filmography-item"><strong>"Colonos del Río Puelo"</strong>, Al Sur del Mundo, <span class="year">1990</span></div>
+                <div class="filmography-item"><strong>"Isla Mocha, prisionera del mar"</strong>, Al Sur del Mundo, <span class="year">1991</span></div>
+                <div class="filmography-item"><strong>"El Bosque Chileno y sus habitantes"</strong>, Bajo La Cruz del Sur, <span class="year">1993</span></div>
+                <div class="filmography-item"><strong>"Provincia de Última Esperanza"</strong>, Bajo La Cruz del Sur, <span class="year">1993</span></div>
+                <div class="filmography-item"><strong>"Irazú, La montaña del temblor y los retumbos"</strong>, Al Sur del Mundo, <span class="year">1994</span></div>
+                <div class="filmography-item"><strong>"Los Tejedores de Alepúe"</strong>, Al Sur del Mundo, <span class="year">1994</span></div>
+                <div class="filmography-item"><strong>"Los Conejeros de la Patagonia"</strong>, Al Sur del Mundo, <span class="year">1994</span></div>
+                <div class="filmography-item"><strong>"Los Alemanes del Llanquihue"</strong>, Al Sur del Mundo, <span class="year">1994</span></div>
+                <div class="filmography-item"><strong>"Alberto Caro, un viejo lobo de mar"</strong>, Al Sur del Mundo, <span class="year">1995</span></div>
+                <div class="filmography-item"><strong>"Torres del Paine, las montañas azules"</strong>, Al Sur del Mundo, <span class="year">1995</span> ⭐</div>
+                <div class="filmography-item"><strong>"Las Falkland – Malvinas"</strong>, Al Sur del Mundo, <span class="year">1996</span></div>
+                <div class="filmography-item"><strong>"Los Hombres del Cochayuyo"</strong>, Al Sur del Mundo, <span class="year">1997</span></div>
+                <div class="filmography-item"><strong>"Los Pescadores Más Afuera"</strong>, Al Sur del Mundo, <span class="year">1997</span></div>
+                <div class="filmography-item"><strong>"Las Tejedoras de Rari"</strong>, Al Sur del Mundo, <span class="year">1997</span></div>
+                <div class="filmography-item"><strong>"Los Juegos de Septiembre"</strong>, Al Sur del Mundo, <span class="year">1997</span></div>
+                <div class="filmography-item"><strong>"Los camaroneros de Ñiquen"</strong>, Al Sur del Mundo, <span class="year">1997</span></div>
+                <div class="filmography-item"><strong>"Dominga Neculmán, alfarera mapuche"</strong>, Al Sur del Mundo, <span class="year">1998</span> ⭐</div>
+                <div class="filmography-item"><strong>"Las Loceras de Quinchamalí"</strong>, Al Sur del Mundo, <span class="year">1998</span></div>
+                <div class="filmography-item"><strong>"El torneo campesino de Tres Hijuelas"</strong>, Al Sur del Mundo, <span class="year">2000</span></div>
+                <div class="filmography-item"><strong>"La Guitarra Chilena en La Araucanía"</strong>, Al Sur del Mundo, <span class="year">2000</span></div>
+                <div class="filmography-item"><strong>"Punucapa, el alma del Río Cruces"</strong>, Al Sur del Mundo, <span class="year">2001</span></div>
+                <div class="filmography-item"><strong>"La antigua ruta al Puelmapu"</strong>, Al Sur del Mundo, <span class="year">2001</span></div>
+                <div class="filmography-item"><strong>"Lihueimo refugio de tradiciones y Los Mates burilados del Perú"</strong>, Al Sur del Mundo, <span class="year">2001</span></div>
+                <div class="filmography-item"><strong>"La vida y la muerte del Cisne de Cuello Negro"</strong>, <span class="year">2004</span></div>
+                <div class="filmography-item"><strong>"Memoria de la familia diaguita Araya"</strong>, Sur Imagen, Dinámica Plataforma, <span class="year">2019</span></div>
+                <div class="filmography-item"><strong>"La Vida junto al Pewen"</strong>, Chile, un territorio al sur del mundo, <span class="year">2020</span> 🏆</div>
+                <div class="filmography-item"><strong>"El Tío Merejo"</strong>, Chile, un territorio al sur del mundo, <span class="year">2020</span></div>
+                <div class="filmography-item"><strong>"Registro Fílmico y Fotográfico del Geoparque Kutralcura"</strong>, Sur Imagen, Universidad Mayor, <span class="year">2021</span></div>
+            </div>
+
+            <h3 style="font-size: 1.8rem; margin-top: 3rem; margin-bottom: 1.5rem; color: var(--accent-dark);">Como Codirector</h3>
+            <div class="filmography-list">
+                <div class="filmography-item"><strong>"Fauna Chilena"</strong>, con Francisco y Manuel Gedda, Al Sur del Mundo, <span class="year">1985</span></div>
+                <div class="filmography-item"><strong>"Tenaún donde las casas navegan"</strong>, con Francisco Gedda, Al Sur del Mundo, <span class="year">1988</span></div>
+                <div class="filmography-item"><strong>"La Isla de Robinson Crusoe"</strong>, con Manuel Gedda, Al Sur del Mundo, <span class="year">1990</span></div>
+                <div class="filmography-item"><strong>"La Ruta olvidada del Río Bueno"</strong>, con Manuel Gedda, Al Sur del Mundo, <span class="year">1990</span></div>
+                <div class="filmography-item"><strong>"Los tres gigantes del bosque chileno"</strong>, con Manuel Gedda, Al Sur del Mundo, <span class="year">1991</span></div>
+                <div class="filmography-item"><strong>"Dos fugitivos de la fauna chilena"</strong>, con Manuel Gedda, Bajo La Cruz del Sur, <span class="year">1992</span></div>
+                <div class="filmography-item"><strong>"La Antártica, un continente sin fronteras"</strong>, con Manuel Gedda, Al Sur del Mundo, <span class="year">1995</span></div>
+            </div>
+
+            <h3 style="font-size: 1.8rem; margin-top: 3rem; margin-bottom: 1.5rem; color: var(--accent-dark);">Serie "Frutos del País" (Director)</h3>
+            <div class="filmography-list">
+                <div class="filmography-item"><strong>La Comarca de Villarrica</strong>, <span class="year">2004</span></div>
+                <div class="filmography-item"><strong>La Comarca del Río Cruces</strong>, <span class="year">2005</span></div>
+                <div class="filmography-item"><strong>Isla Mocha, atrapada en el mar</strong>, <span class="year">2006</span></div>
+                <div class="filmography-item"><strong>Canales Patagónicos</strong>, <span class="year">2011</span></div>
+                <div class="filmography-item"><strong>Alto Toltén</strong>, <span class="year">2012</span></div>
+                <div class="filmography-item"><strong>Chepu</strong>, <span class="year">2012</span></div>
+                <div class="filmography-item"><strong>Punta de Choros</strong>, <span class="year">2012</span></div>
+                <div class="filmography-item"><strong>Río Bueno</strong>, <span class="year">2012</span></div>
+                <div class="filmography-item"><strong>Cerro Castillo</strong>, <span class="year">2013</span></div>
+                <div class="filmography-item"><strong>Licanray</strong>, <span class="year">2013</span></div>
+                <div class="filmography-item"><strong>Los Ángeles</strong>, <span class="year">2013</span></div>
+                <div class="filmography-item"><strong>María Elena</strong>, <span class="year">2013</span></div>
+                <div class="filmography-item"><strong>Curarrehue</strong>, <span class="year">2014</span></div>
+                <div class="filmography-item"><strong>Osorno</strong>, <span class="year">2014</span></div>
+                <div class="filmography-item"><strong>Lago Budi-Puerto Saavedra</strong>, <span class="year">2014</span></div>
+                <div class="filmography-item"><strong>Quidico</strong>, <span class="year">2014</span></div>
+                <div class="filmography-item"><strong>Panguipulli</strong>, <span class="year">2015</span></div>
+                <div class="filmography-item"><strong>Chidhuapi</strong>, <span class="year">2015</span></div>
+                <div class="filmography-item"><strong>Rere-Yumbel</strong>, <span class="year">2015</span></div>
+                <div class="filmography-item"><strong>Pucón</strong>, <span class="year">2017</span></div>
+            </div>
+
+            <h3 style="font-size: 1.8rem; margin-top: 3rem; margin-bottom: 1.5rem; color: var(--accent-dark);">Premios y Distinciones</h3>
+            <ul class="awards-list">
+                <li><strong>2020</strong> - El documental "La Vida junto al Pewen", dirigido por Juan Carlos Gedda, ha sido reconocido en Grecia en el festival West Side in Athens Doc Fest con The Ecological Award. Este premio es entregado por el jurado al documental que destaca por su contribución a la difusión y promoción de la preservación de los más hermosos espacios naturales del planeta. 🏆</li>
+                <li><strong>2020</strong> - Estamos emocionados de anunciar que La Vida Junto al Pewen será estrenado en YouTube y exhibido en simultáneo con el Quetzalcoatl Indigenous International Film Festival, donde ha sido galardonado con el "Quetzalcoatl" a las películas ganadoras. 🏆</li>
+                <li><strong>2011</strong> - Premio a la Trayectoria "Enrique Eilers", otorgado por la Asociación Gremial de Trabajadores del Audiovisual y el Cine de La Araucanía, Chile</li>
+                <li><strong>2005</strong> - Reconocimiento "Artistas Audiovisuales por aporte al Cine y Audiovisual Regional"</li>
+                <li><strong>2004</strong> - Documental invitado: "Los Hombres del Cochayuyo", 1ª Muestra de Cine Documental al Aire Libre, Instituto de la Comunicación e Imagen, Universidad de Chile</li>
+                <li><strong>2003</strong> - Distinción "Trayectoria Artística Audiovisual", Secretaría Regional Ministerial Araucanía</li>
+                <li><strong>1999</strong> - Premio Pudú, 1° Lugar Género Documental por "Dominga Neculman, alfarera mapuche", Festival Internacional de Cine de Valdivia, Chile</li>
+                <li><strong>1998</strong> - Mención de Honor por el documental "Las Falkland-Malvinas: En la ruta del Atlántico azul", Festival Imagen do Natura Sao Paulo, Brasil</li>
+                <li><strong>1997</strong> - Premio del Público, documental "Torres del Paine, las Montañas Azules", Festival de Sondrio, Italia</li>
+                <li><strong>1994</strong> - Distinción "Chile siglo XXI" por difusión de la cultura ecológica de IBM por "Bajo La Cruz del Sur", Santiago de Chile</li>
+                <li><strong>1994</strong> - Ministerio de Educación de Chile declara diversos documentales de Al Sur del Mundo como "Material Auxiliar de la Educación Chilena"</li>
+                <li><strong>1994</strong> - Premio APES de la Asociación de Periodistas de Espectáculos al mejor programa documental, por serie "Al Sur del Mundo", (colectivo), Chile</li>
+                <li><strong>1990</strong> - Premio Consejo Nacional de Televisión por "Al Sur del Mundo", (colectivo), Chile</li>
+            </ul>
+
+            <h3 style="font-size: 1.8rem; margin-top: 3rem; margin-bottom: 1.5rem; color: var(--accent-dark);">Jurado en Concursos y Festivales</h3>
+            <ul class="awards-list">
+                <li><strong>2021</strong> - Jurado Concurso de Fotografía "Conociendo los geositios de Melipeuco", Servicio Nacional de Geología y Minería</li>
+                <li><strong>2021</strong> - Evaluador "Fondo Nacional de Fomento Audiovisual", línea guion original y adaptación literaria, modalidad documental, Ministerio de las Culturas, las Artes y el Patrimonio</li>
+                <li><strong>2020</strong> - Jurado 1er Concurso de Fotografía "Capturando la Montaña", Universidad Austral de Chile, Valdivia</li>
+                <li><strong>2020</strong> - Jurado "Concurso Fotográfico Rayados por Chile"</li>
+                <li><strong>2014</strong> - Jurado 2do Concurso de Fotografía "Invierno en Lonquimay", Programa de Cultura Municipalidad de Lonquimay</li>
+                <li><strong>2012</strong> - Jurado "Festival Internacional de Cine de la Antártica sobre Medioambiente y Sustentabilidad" (FICAMS), Puerto Williams</li>
+                <li><strong>2012</strong> - Jurado 1er "Concurso de Cortometrajes Patrimoniales de La Araucanía", Consejo Nacional de la Cultura y las Artes y TRAC Araucanía</li>
+                <li><strong>2010</strong> - Jurado 2do "Festival de Cine de la Patagonia", Coyhaique</li>
+                <li><strong>2010</strong> - Evaluador 1ra convocatoria del "Fondo de Fomento Audiovisual, Formación Profesional", Consejo Nacional de la Cultura y las Artes, Gobierno de Chile</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- LIBRO PEWEN -->
+    <section id="pewen" class="section">
+        <div class="section-container">
+            <h2>Libro Pewen: Araucaria Araucana</h2>
+            <p class="section-subtitle">Obra póstuma - Homenaje a la Araucaria araucana</p>
+
+            <div class="about-text" style="margin-top: 3rem;">
+                <h3>Próximo Lanzamiento</h3>
+                <p>El Proyecto editorial fotográfico sobre el Pewen en La Araucanía ha sido un éxito y se ha agotado su primera edición. La familia de Juan Carlos Gedda está evaluando una segunda edición. ¡Les mantendremos informados!</p>
+
+                <h3>Palabras de sus Hijos</h3>
+                <p>Juan Carlos Gedda Ortiz nos dejó a fines de noviembre del 2023, en la región de La Araucanía, Chile.</p>
+
+                <p>Parte importante de su vida la dedicó a trabajar y divulgar la riqueza natural y humana de nuestra región. Hace años nos contó, así como a sus más cercanos, que tenía la necesidad de crear un libro para la Araucaria-Pewen, porque sentía una profunda gratitud hacia este símbolo de la región. Hace cerca de un año, no sabemos con qué visión premonitoria, se decidió a batallar con sus escasos tiempos para crear este libro, con una mirada tan propia que sobrecoge. Mezcló su formación científica con su espíritu artístico y poético, regalándonos esta creación maravillosa.</p>
+
+                <p>El día previo a su fallecimiento viajó a Santiago para visitar, junto a su querido amigo Antonio Larrea, la imprenta Andros: conocieron sus instalaciones, observaron sus máquinas, conversó y rió con las y los operarios, revisó una copia de su libro y dejó su firma aprobando la versión que sería impresa en febrero.</p>
+
+                <p>Nuestro padre fue una persona trabajadora, leal y consecuente. Se dedicó incansablemente a promover la defensa del bosque y sus habitantes, que con su espíritu y entrega quedó de manifiesto en diversas creaciones personales y colectivas. Tuvo una mente lúcida y unas manos prolíficas, que sentimos que harán falta en el mundo. Sin embargo, con este libro nos dejó, a ustedes y nosotros, la posibilidad de que pudiésemos seguir sintiendo su compañía.</p>
+
+                <p>Esperamos que este libro, "Pewen, Araucaria araucana", llegue hasta ustedes y podamos seguir sintiendo que compartimos con él algunos momentos. Que el profundo cariño, amor y respeto que tenía por nuestro territorio y sus habitantes, se contagie para que más y más personas podamos ver a través de sus ojos.</p>
+
+                <p style="margin-top: 2rem; font-weight: 700;">Marietta, Oriana, Relmu y Kian.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPOSICIONES Y PUBLICACIONES -->
+    <section id="exposiciones" class="section">
+        <div class="section-container">
+            <h2>Exposiciones y Publicaciones</h2>
+            <p class="section-subtitle">Trayectoria visual y documental</p>
+
+            <h3 style="font-size: 1.8rem; margin-top: 3rem; margin-bottom: 1.5rem; color: var(--accent-dark);">Exposiciones Fotográficas Individuales</h3>
+            <div class="cards-grid">
+                <div class="card">
+                    <h3>"Paisajes de Nuestra Araucanía Andina"</h3>
+                    <p>Centro Cultural Liquen, Villarrica, 2017</p>
+                </div>
+                <div class="card">
+                    <h3>"Tierravisual" - Retrospectiva Fotográfica</h3>
+                    <p>Galería de Arte UC Temuco, 2016 - 49 obras fotográficas</p>
+                </div>
+                <div class="card">
+                    <h3>"Nuestro Paisaje"</h3>
+                    <p>Homenaje a La Araucaria, Galería Carlos Cruz, Temuco, 1985</p>
+                </div>
+                <div class="card">
+                    <h3>Itinerancia Colección Platería Mapuche</h3>
+                    <p>De Raúl Morritz</p>
+                </div>
+            </div>
+
+            <h3 style="font-size: 1.8rem; margin-top: 3rem; margin-bottom: 1.5rem; color: var(--accent-dark);">Exposiciones Fotográficas Colectivas</h3>
+            <div class="cards-grid">
+                <div class="card">
+                    <h3>"Wallmapu a Cielo Abierto"</h3>
+                    <p>Dirección de Extensión Universidad de La Frontera, Temuco, 2016</p>
+                </div>
+                <div class="card">
+                    <h3>"Fotografía del Patrimonio Cultural y Natural"</h3>
+                    <p>Museo del Limarí, Ovalle, 2017</p>
+                </div>
+                <div class="card">
+                    <h3>"Somos Territorio Indígena"</h3>
+                    <p>Fundación Artesanías de Chile, Plaza de la Constitución, Santiago, 2019</p>
+                </div>
+            </div>
+
+            <h3 style="font-size: 1.8rem; margin-top: 3rem; margin-bottom: 1.5rem; color: var(--accent-dark);">Publicaciones</h3>
+            <div class="about-text">
+                <ul>
+                    <li><strong>Libro "Platería Mapuche"</strong> (Editorial Kactus, 1992) - Fotografías</li>
+                    <li><strong>"Aguas Continentales Andinas" y "Bosques de Chile"</strong> (UNISIX) - Fotografía adicional</li>
+                    <li><strong>Libro "Foto Naturaleza"</strong> (2012) - Co-creador y Participación fotográfica</li>
+                    <li><strong>Libro "Patrimonio de La Araucanía - Chile"</strong> (2010, Manuel Gedda) - Fotografía adicional</li>
+                    <li><strong>Afiche oficial itinerancia Europa</strong> - "Museo Chileno de Arte Precolombino" - Fotografía</li>
+                    <li><strong>Libro "Lonco Pascual Coña, Memorias de un Cacique Mapuche"</strong> (Editorial Pehuén, Santiago de Chile) - Fotografía de portada</li>
+                    <li><strong>Colección de Sellos "Etnias de Chile"</strong> - Fotografías para Correos de Chile, con Antonio Larrea</li>
+                    <li><strong>Revista Geomundo</strong> - Reportaje "Mudanza de casa en Chiloé" (Volumen 12, N°4, 1988), con Manuel Gedda</li>
+                    <li><strong>Reportajes fotográficos en Revistas:</strong> Geomundo, Dinners, Patagon Journal, La Ruta del Arte y Revista del Domingo (El Mercurio de Chile)</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto" class="section">
+        <div class="section-container">
+            <h2>Contacto</h2>
+            <p class="section-subtitle">Ponte en contacto para consultas, proyectos o colaboraciones</p>
+
+            <div class="contact-form">
+                <form action="https://formspree.io/f/xyzqabcd" method="POST">
+                    <div class="form-group">
+                        <label for="nombre">Nombre Completo *</label>
+                        <input type="text" id="nombre" name="nombre" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Correo Electrónico *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="asunto">Asunto *</label>
+                        <input type="text" id="asunto" name="asunto" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mensaje">Mensaje *</label>
+                        <textarea id="mensaje" name="mensaje" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="_replyto">Tu correo será enviado a: libropewen@gmail.com</label>
+                        <input type="hidden" name="_replyto" value="libropewen@gmail.com">
+                    </div>
+
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="privacy" name="privacy" required>
+                        <label for="privacy">He leído y acepto la <a href="#" style="color: var(--accent-gold); text-decoration: none;">política de privacidad</a></label>
+                    </div>
+
+                    <button type="submit" class="cta-button" style="width: 100%;">Enviar Mensaje</button>
+                </form>
+            </div>
+
+            <div style="margin-top: 3rem; text-align: center; border-top: 1px solid var(--secondary-gray); padding-top: 2rem;">
+                <h3>Redes Sociales</h3>
+                <div class="social-links" style="color: var(--text-dark);">
+                    <a href="https://www.instagram.com/jcgedda/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">Instagram</a>
+                    <a href="https://www.facebook.com/juan.c.ortiz.9041" target="_blank" rel="noopener noreferrer" aria-label="Facebook">Facebook</a>
+                </div>
+            </div>
+
+            <div style="margin-top: 2rem; text-align: center; color: var(--text-light);">
+                <p style="font-size: 0.9rem;">Para consultas directas: <strong>libropewen@gmail.com</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Juan Carlos Gedda</h3>
+                <p>Fotógrafo, Documentalista y Realizador Audiovisual</p>
+                <p style="margin-top: 0.5rem; font-size: 0.9rem;">Temuco, 1954 - Villarrica, 2023</p>
+            </div>
+
+            <div class="social-links">
+                <a href="https://www.instagram.com/jcgedda/" target="_blank" rel="noopener noreferrer">Instagram</a>
+                <a href="https://www.facebook.com/juan.c.ortiz.9041" target="_blank" rel="noopener noreferrer">Facebook</a>
+            </div>
+
+            <div class="footer-bottom">
+                <p>La Araucanía, Chile</p>
+                <p style="margin-top: 0.5rem;">Copyright © 2024 JC GEDDA. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => section.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+            document.getElementById('nav-menu').classList.remove('active');
+            window.scrollTo(0, 0);
+            updateActiveNav();
+        }
+
+        function toggleMenu() {
+            document.getElementById('nav-menu').classList.toggle('active');
+        }
+
+        function updateActiveNav() {
+            const activeSectionId = document.querySelector('.section.active').id;
+            document.querySelectorAll('nav a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('onclick')?.includes(activeSectionId)) {
+                    link.classList.add('active');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
